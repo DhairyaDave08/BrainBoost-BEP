@@ -1,6 +1,14 @@
-# BrainBoost: A Reward Learning Experience
+# BrainBoost: A Reward-Based Learning Experience — BEP Group 46
 
-## ⭐ "Learning feels different when knowledge gives you *actual* rewards!" ⭐
+## ⭐ *“Learning feels different when knowledge transforms into real rewards.”* ⭐
+
+---
+
+## ⭐ Mentor  
+### **Prof. Purbasha Das**  
+*DAU (formerly DAIICT)*
+
+
 
 ## 📘 Introduction
 
