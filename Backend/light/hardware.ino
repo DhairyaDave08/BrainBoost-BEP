@@ -4,13 +4,13 @@
 
 // LED + BUZZER
 #define GREEN_LED 10
-#define RED_LED   8
+#define RED_LED   12
 #define BUZZER    6
 
 Servo s;
 int cur = 0;
 
-// Smooth movement
+// Smooth movement (slower)
 void moveSmooth(int target) {
   target = constrain(target, 0, 180);
   if (target == cur) return;
@@ -19,23 +19,30 @@ void moveSmooth(int target) {
   while (cur != target) {
     cur += dir;
     s.write(cur);
-    delay(3);
+    delay(8);      // <-- Increased delay: slower servo movement
   }
 }
 
 // Always return to 0
 void goHome() {
   moveSmooth(0);
-  delay(150);
+  delay(300);
 }
 
 // Perform n rotations, where each rotation = 36°
 void rotateN(int n) {
   if (n <= 0) return;
   goHome();
+int target;
 
-  int target = n * 36;
-  target = constrain(target, 0, 180);
+if (n == 1) {
+  target = 70;   // <-- FIX: enough rotation for 1 chocolate
+} else {
+  target = n * 44;
+}
+
+target = constrain(target, 0, 180);
+
 
   moveSmooth(target);
   delay(200);
@@ -91,11 +98,13 @@ void loop() {
   }
   else if (n == 5) {
     digitalWrite(GREEN_LED, HIGH);
-    delay(500);                 // <-- added so LED remains ON briefly
+    delay(500);
   }
   else if (n == 6) {
     digitalWrite(RED_LED, HIGH);
     digitalWrite(BUZZER, HIGH);
-    delay(500);                 // <-- added so buzzer + LED stay ON
+    delay(400);
+    digitalWrite(BUZZER, LOW);
+    delay(500);
   }
 }
